@@ -1,0 +1,6 @@
+FROM openjdk
+
+VOLUME /tmp
+ADD word-server-1.0.jar word-server-1.0.jar
+RUN sh -c 'touch /word-server-1.0.jar'
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/word-server-1.0.jar", "--spring.profiles.active=${PROFILE_VALUE}"]

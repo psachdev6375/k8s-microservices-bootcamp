@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verb
+spec:
+  selector: 
+    matchLabels: 
+      app: verb 
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: verb
+    spec:
+      containers:
+      - name: verb
+        image: com.puneet.k8s/word-server:1.0
+        env:
+        - name: PROFILE_VALUE
+          value: "verb"
+        - name: SERVER_PORT
+          value: "8204"
+        ports: 
+        - containerPort: 8204

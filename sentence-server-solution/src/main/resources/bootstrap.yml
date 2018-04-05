@@ -1,0 +1,15 @@
+# Properties active for ALL profiles:
+---
+spring:
+  application:
+    name: sentence
+server:
+  port: ${SERVER_PORT:8105}      # Fix the sentence server to 8020.  This makes it easy to find.
+
+dependencies: 
+  adjective: http://${ADJECTIVE_SERVICE_HOST}:${ADJECTIVE_SERVICE_PORT}
+  article: http://${ARTICLE_SERVICE_HOST}:${ARTICLE_SERVICE_PORT}
+  noun: http://${NOUN_SERVICE_HOST}:${NOUN_SERVICE_PORT}
+  subject: http://${SUBJECT_SERVICE_HOST}:${SUBJECT_SERVICE_PORT}
+  verb: http://${VERB_SERVICE_HOST}:${VERB_SERVICE_PORT}
+  

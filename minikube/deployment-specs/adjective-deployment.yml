@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adjective
+spec:
+  selector: 
+    matchLabels: 
+      app: adjective 
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: adjective 
+    spec:
+      containers:
+      - name: adjective
+        image: com.puneet.k8s/word-server:1.0
+        env:
+        - name: PROFILE_VALUE
+          value: "adjective"
+        - name: SERVER_PORT
+          value: "8200"
+        ports: 
+        - containerPort: 8200
