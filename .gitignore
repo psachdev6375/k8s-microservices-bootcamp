@@ -17,4 +17,5 @@ buildNumber.properties
 workspace/
 deployables/
 data/
+prometheus-operator/
 *.log

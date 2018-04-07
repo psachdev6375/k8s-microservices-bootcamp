@@ -1,0 +1,267 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adjective
+spec:
+  selector: 
+    matchLabels: 
+      app: adjective 
+      owner: com.puneet
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: adjective 
+        owner: com.puneet
+    spec:
+      containers:
+      - name: adjective
+        image: com.puneet.k8s/word-server:1.0
+        env:
+        - name: PROFILE_VALUE
+          value: "adjective"
+        - name: SERVER_PORT
+          value: "8200"
+        ports: 
+        - containerPort: 8200
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: article
+spec:
+  selector: 
+    matchLabels: 
+      app: article 
+      owner: com.puneet
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: article
+        owner: com.puneet
+    spec:
+      containers:
+      - name: article
+        image: com.puneet.k8s/word-server:1.0
+        env:
+        - name: PROFILE_VALUE
+          value: "article"
+        - name: SERVER_PORT
+          value: "8201"
+        ports: 
+        - containerPort: 8201
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: noun
+spec:
+  selector: 
+    matchLabels: 
+      app: noun 
+      owner: com.puneet
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: noun
+        owner: com.puneet
+    spec:
+      containers:
+      - name: noun
+        image: com.puneet.k8s/word-server:1.0
+        env:
+        - name: PROFILE_VALUE
+          value: "noun"
+        - name: SERVER_PORT
+          value: "8202"
+        ports: 
+        - containerPort: 8202
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subject
+spec:
+  selector: 
+    matchLabels: 
+      app: subject 
+      owner: com.puneet
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: subject
+        owner: com.puneet
+    spec:
+      containers:
+      - name: subject
+        image: com.puneet.k8s/word-server:1.0
+        env:
+        - name: PROFILE_VALUE
+          value: "subject"
+        - name: SERVER_PORT
+          value: "8203"
+        ports: 
+        - containerPort: 8203
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verb
+spec:
+  selector: 
+    matchLabels: 
+      app: verb 
+      owner: com.puneet
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: verb
+        owner: com.puneet
+    spec:
+      containers:
+      - name: verb
+        image: com.puneet.k8s/word-server:1.0
+        env:
+        - name: PROFILE_VALUE
+          value: "verb"
+        - name: SERVER_PORT
+          value: "8204"
+        ports: 
+        - containerPort: 8204
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentence
+spec:
+  selector: 
+    matchLabels: 
+      app: sentence
+      owner: com.puneet
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: sentence
+        owner: com.puneet
+    spec:
+      containers:
+      - name: sentence
+        image: com.puneet.k8s/sentence-server:1.0
+        env:
+        - name: SERVER_PORT
+          value: "8205"
+        ports: 
+        - containerPort: 8205
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adjective
+  labels:
+    app: adjective
+    owner: com.puneet
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 8200
+    nodePort: 32000
+    protocol: TCP
+  selector:
+    app: adjective
+    owner: com.puneet 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: article
+  labels:
+    app: article
+    owner: com.puneet 
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 8201
+    nodePort: 32001
+    protocol: TCP
+  selector:
+    app: article
+    owner: com.puneet
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: noun
+  labels:
+    app: noun
+    owner: com.puneet 
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 8202
+    nodePort: 32002
+    protocol: TCP
+  selector:
+    app: noun
+    owner: com.puneet 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subject
+  labels:
+    app: subject
+    owner: com.puneet 
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 8203
+    nodePort: 32003
+    protocol: TCP
+  selector:
+    app: subject
+    owner: com.puneet 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: verb
+  labels:
+    app: verb
+    owner: com.puneet 
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 8204
+    nodePort: 32004
+    protocol: TCP
+  selector:
+    app: verb
+    owner: com.puneet 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentence
+  labels:
+    app: sentence 
+    owner: com.puneet 
+spec:
+  type: NodePort
+  ports:
+  - name: web
+    port: 8205
+    nodePort: 32005
+    protocol: TCP
+  selector:
+    app: sentence
+    owner: com.puneet 

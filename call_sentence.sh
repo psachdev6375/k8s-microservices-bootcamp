@@ -1,5 +1,4 @@
 while : 
 do 
-	curl --GET http://localhost:8105/sentence 
-	curl --GET http://localhost:8080/services/sentence/sentence 
+	curl --GET http://192.168.99.100:32005/sentence 
 done 

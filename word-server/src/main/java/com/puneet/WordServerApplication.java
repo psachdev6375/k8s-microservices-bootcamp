@@ -44,7 +44,7 @@ public class WordServerApplication {
     @Bean
     public ServletRegistrationBean servletRegistrationBean() {
         DefaultExports.initialize();
-        return new ServletRegistrationBean(new MetricsServlet(), "/prometheus");
+        return new ServletRegistrationBean(new MetricsServlet(), "/metrics");
     }
     
 }
